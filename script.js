@@ -65,5 +65,18 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
     character.style.left = 0;
     t = 0;
     document.getElementById("result").innerText = `Tempo de queda: 0.00 segundos`;
+    document.getElementById("dist").innerText = `Distância percorrida: 0.00 km`;
+    document.getElementById("alt").innerText = `Altura máxima: 0.00 km ou 0.00 m`;
   });
+  // Boão de Resetar
+  
+  const distMaxKm = (((((initialVelocity ** 2) * (Math.sin(2 * launchAngleRad))) / gravity)) / 1000);
+  const altMaxKm = (((initialVerticalVelocity ** 2) / (2 * gravity)) / 1000);
+  const altMaxM = ((initialVerticalVelocity ** 2) / (2 * gravity));
+  // Altura e distância máximas
+
+  document.getElementById("dist").innerText =
+    `Distância percorrida: ${distMaxKm.toFixed(2)} km`;
+  
+  document.getElementById("alt").innerText = `Altura máxima: ${altMaxKm.toFixed(2)} km ou ${altMaxM.toFixed(2)} m`;
 });
