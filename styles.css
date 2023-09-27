@@ -33,7 +33,18 @@ button {
 }
 
 #result {
-  margin-top: 20px;
+  margin: 25px;
+  float: left;
+  font-weight: bold;
+}
+#dist {
+  margin: 25px;
+  float: left;
+  font-weight: bold;
+}
+#alt {
+  margin: 25px;
+  float: left;
   font-weight: bold;
 }
 
@@ -44,7 +55,7 @@ button {
   background-color: antiquewhite;
   border-radius: 10px;
   position: relative;
-  margin-top: 20px;
+  margin-top: 70px;
   overflow-y: auto;
   overflow-x: auto;
 }
