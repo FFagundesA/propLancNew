@@ -10,16 +10,12 @@
 <body>
     <h1>Simulador de Lançamento Oblíquo</h1>
     <div class="input-container">
-        <label for="initial-vertical-velocity">Velocidade Inicial Vertical (m/s):</label>
-        <input type="number" id="initial-vertical-velocity">
-    </div>
-    <div class="input-container">
-        <label for="initial-horizontal-velocity">Velocidade Inicial Horizontal (m/s):</label>
-        <input type="number" id="initial-horizontal-velocity">
+        <label for="initial-velocity">Velocidade Inicial (m/s):</label>
+        <input type="number" id="initialVelocity">
     </div>
     <div class="input-container">
         <label for="launch-angle">Ângulo de Lançamento (graus):</label>
-        <input type="number" id="launch-angle">
+        <input type="number" id="launchAngle">
     </div>
     <div class="input-container">
         <label for="gravity">Aceleração da Gravidade (m/s²):</label>
@@ -34,6 +30,7 @@
     </div>
     <div class="Area" id="Area">
         <div id="character"></div>
+        <div id="maxAltDot"></div>
     </div>
     <script src="script.js"></script>
 </body>
