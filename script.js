@@ -67,7 +67,7 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
     maxAltDot.style.bottom = 0 + "px";
     maxAltDot.style.left = 0 + "px";
     t = 0;
-    document.getElementById("result").innerText = `Tempo de queda: 0.00 segundos`;
+    document.getElementById("result").innerText = `Tempo de voo: 0.00 segundos`;
     document.getElementById("dist").innerText = `Distância percorrida: 0.00 km`;
     document.getElementById("alt").innerText = `Altura máxima: 0.00 km ou 0.00 m`;
   });
