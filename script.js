@@ -4,7 +4,7 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
   const gravity = parseFloat(document.getElementById("gravity").value);
 
   const launchAngleRad = launchAngle * Math.PI / 180;
-  // Transform graus em rad
+  // Transforma graus em rad
 
   const tempoVoo = ((2 * initialVelocity * Math.sin(launchAngleRad)) / gravity);
   // Calcula o tempo de voo
