@@ -4,62 +4,62 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
   const gravity = parseFloat(document.getElementById("gravity").value);
 
   const launchAngleRad = launchAngle * Math.PI / 180;
-  // Transforma graus em rad
+  // Transforms degrees in radians
 
-  const tempoVoo = ((2 * initialVelocity * Math.sin(launchAngleRad)) / gravity);
-  // Calcula o tempo de voo
+  const flightTime = ((2 * initialVelocity * Math.sin(launchAngleRad)) / gravity);
+  // Calculates the Flight Time
 
   const horizontalVelocity = Math.cos(launchAngleRad) * initialVelocity;
   const initialVerticalVelocity = Math.sin(launchAngleRad) * initialVelocity;
-  // Velocidade horizontal e velocidade inicial vertical
+  // Horizonatl velocity and Initial vertical velocity
 
-  document.getElementById("result").innerText = `Tempo de voo: ${tempoVoo.toFixed(2)} segundos`;
+  document.getElementById("result").innerText = `Flight Time: ${flightTime.toFixed(2)} seconds`;
 
   let character = document.getElementById("character");
-  // Variável da parábola
+  // Sprite of the blue ball
 
   let posX = 0;
   let posY = 0;
   let t = 0;
-  // Posição e tempo iniciais
+  // Initial positions and time
 
-  const tempo = setInterval(function () {
+  const time = setInterval(function () {
     t += 0.1;
   }, 10);
-  // Contador do tempo
+  // Time
 
   function updateX() {
     posX = horizontalVelocity * t;
     character.style.left = posX + "px";
   };
-  // Função horária da posição MRU
+  // Function to update the horizontal position
 
   function updateY() {
     posY = (initialVerticalVelocity * t) - ((gravity * (t ** 2)) / 2);
     character.style.bottom = posY + "px";
   };
-  // Função horária da posição MRUV
+  // Function to update the vertical position
 
   const posUpdater = setInterval(function () {
     updateX();
     updateY();
   });
-  // Chama as funções de atualização de posição quando o tempo (t) é atualizado pelo setInterval
+  /* Calls the function to update the positions, notice that it can call them reapetedly regardless of the time passed,
+  due to the fact that the position will only change according to the time passed, and the time function has its own update time*/
 
   setInterval(function () {
-    if (t >= tempoVoo) {
-      clearInterval(tempo);
+    if (t >= flightTime) {
+      clearInterval(time);
       clearInterval(posUpdater);
     };
   });
 
-  /* Vai verificando a progressão do t até ele chegar no tempo de voo, ou seja, quando o objeto toca no chão,
-   e então para o movimento, cessando as atualizações das funções horárias */
+  /* It verifies the progress of time and compares it to its final value (tempoVoo means Duration of Flight */
   
   let rstBtn = document.getElementById("rstBtn");
 
   rstBtn.addEventListener("click", function () {
-    clearInterval(tempo);
+    clearInterval(time);
     clearInterval(posUpdater);
     clearInterval(posAMDupdater);
     character.style.bottom = 0 + "px";
@@ -67,26 +67,26 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
     maxAltDot.style.bottom = 0 + "px";
     maxAltDot.style.left = 0 + "px";
     t = 0;
-    document.getElementById("result").innerText = `Tempo de voo: 0.00 segundos`;
-    document.getElementById("dist").innerText = `Distância percorrida: 0.00 km`;
-    document.getElementById("alt").innerText = `Altura máxima: 0.00 km ou 0.00 m`;
+    document.getElementById("result").innerText = `Flight Time: 0.00 seconds`;
+    document.getElementById("dist").innerText = `Distance Traveled: 0.00 Km`;
+    document.getElementById("alt").innerText = `Maximum Height Reached: 0.00 Km or 0.00 m`;
   });
-  // Boão de Resetar
+  // Reset Button
   
   const distMaxKm = (((((initialVelocity ** 2) * (Math.sin(2 * launchAngleRad))) / gravity)) / 1000);
   const altMaxKm = (((initialVerticalVelocity ** 2) / (2 * gravity)) / 1000);
   const altMaxM = ((initialVerticalVelocity ** 2) / (2 * gravity));
-  // Altura e distância máximas
+  // Max Height and Distance
 
   document.getElementById("dist").innerText =
-    `Distância percorrida: ${distMaxKm.toFixed(2)} km`;
+    `Distance Traveled ${distMaxKm.toFixed(2)} Km`;
   
-  document.getElementById("alt").innerText = `Altura máxima: ${altMaxKm.toFixed(2)} km ou ${altMaxM.toFixed(2)} m`;
+  document.getElementById("alt").innerText = `Maximum Height Reached ${altMaxKm.toFixed(2)} Km or ${altMaxM.toFixed(2)} m`;
 
   let maxAltDot = document.getElementById("maxAltDot");
   let posYAMD = 0;
   let posXAMD = 0;
-  const tSubida = ((initialVelocity * Math.sin(launchAngleRad)) / gravity);
+  const ascendTime = ((initialVelocity * Math.sin(launchAngleRad)) / gravity);
 
   function updatePosYAMD() {
     posYAMD = (initialVerticalVelocity * t) - ((gravity * (t ** 2)) / 2);
@@ -104,8 +104,11 @@ document.getElementById("calculateBtn").addEventListener("click", function () {
   });
 
   setInterval(function () {
-    if (t >= tSubida) {
+    if (t >= ascendTime) {
       clearInterval(posAMDupdater);
     };
   });
 });
+
+/* The rest of the code uses another sprite of a blue ball that behaves exactly as the previous one,
+except that this time it ceases to update its position when it reaches maximum height*/
